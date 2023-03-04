@@ -16,9 +16,9 @@ model User {
   name String
   email String
   password String
-  role   ROLE @default(USER)
+  role   Role @default(USER)
   active Boolean @default(true)
-  try Integer @default(0)
+  try Int @default(0)
   blocked Boolean @default(false)
   //Default for every class
   created_at DateTime? @default(now())

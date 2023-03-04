@@ -32,7 +32,7 @@ class AuthUserService{
     }
 
     //unlock
-    await prismaClient.user.update.update({
+    await prismaClient.user.update({
       where:{
         id: user.id
       },
@@ -70,7 +70,7 @@ class AuthUserService{
       where:{
         email: email,
         active: true,
-        block: false,
+        blocked: false,
       }
     })
 
@@ -83,7 +83,7 @@ class AuthUserService{
 
     if(!passwordMatch){
       //increment try and block
-      await prismaClient.user.update.update({
+      await prismaClient.user.update({
         where:{
           id: user.id
         },

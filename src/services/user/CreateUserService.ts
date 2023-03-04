@@ -4,7 +4,7 @@ import {UserRequest} from "../../interface";
 
 
 class CreateUserService{
-  async execute({ name, email, password, role, createdBy, updatedBy }: UserRequest){
+  async execute({ name, email, password, role, created_by, updated_by }: UserRequest){
 
     // verificar se ele enviou um email
     if(!email){
@@ -30,8 +30,8 @@ class CreateUserService{
         email: email,
         password: passwordHash,
         role: role,
-        createdBy: createdBy,
-        updatedBy: updatedBy,
+        created_by: created_by,
+        updated_by: updated_by,
       },
       select:{
         id: true,
