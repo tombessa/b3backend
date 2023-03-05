@@ -69,11 +69,9 @@ class AuthUserService{
     const user = await prismaClient.user.findFirst({
       where:{
         email: email,
-        active: true,
-        blocked: false,
+        active: true
       }
     })
-
     if(!user){
       throw new Error("User/password incorrect")
     }
@@ -89,12 +87,23 @@ class AuthUserService{
         },
         data:{
           try: user.try+1,
-          blocked: (user.try>3)
+          blocked: ((user.try+1)>3)
         }
       })
-      throw new Error("User/password incorrect")
+      throw new Error("User/password incorrect. If there are three attempts, then user will be blocked.")
     }
-
+    if(user.blocked){
+      await prismaClient.user.update({
+        where:{
+          id: user.id
+        },
+        data:{
+          try: 0,
+          blocked: false
+        }
+      })
+    }
+    
     //Generate Token
     const token = sign(
       {
