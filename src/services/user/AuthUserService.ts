@@ -103,7 +103,7 @@ class AuthUserService{
         }
       })
     }
-    
+
     //Generate Token
     const token = sign(
       {
