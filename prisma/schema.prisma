@@ -25,7 +25,7 @@ model User {
   created_by String?
   updated_at DateTime? @updatedAt
   updated_by String?
-  Project    Project[]
+  //Project    Project[]
 
   @@map("users")
 }
