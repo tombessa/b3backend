@@ -1,0 +1,23 @@
+import prismaClient from "../../prisma"
+
+interface #entity#Request{
+    #interface_column#
+}
+export {#entity#Request}
+
+class #function##entity#Service{
+  async execute({ #controller_param# }: #entity#Request){
+
+    #required_code#
+    #unique_code#
+
+    let query=#init_query#;
+	
+	#where#
+	#data#
+	return await prismaClient.#entity_lower#.#action#(query);
+
+  }
+}
+
+export { #function##entity#Service }
