@@ -1,0 +1,23 @@
+import {Request, response, Response} from 'express'
+import { #function##entity#Service #interface_request# } from '../../services/#entity_lower#/#function##entity#Service'
+#import_role#
+
+
+class #function##entity#Controller{
+  async handle(req: Request, res: Response){    
+	#controller_request#
+	
+    const #function_lower##entity#Service = new #function##entity#Service();
+    let created_by = req.user_id;
+    let updated_by = req.user_id;
+
+    let p#function_lower# = {
+      #controller_list#
+    };
+    const #entity_lower# = await #function_lower##entity#Service.execute(p#function_lower#);
+
+    return res.json(#entity_lower#)
+  }
+}
+
+export { #function##entity#Controller }

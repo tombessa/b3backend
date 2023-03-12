@@ -12,23 +12,26 @@ datasource db {
 
 // create a migration: yarn prisma migrate dev
 model User {
-  id String @id @default(uuid())
-  name String
-  email String
-  password String
-  role   Role @default(USER)
-  active Boolean @default(true)
-  try Int @default(0)
-  blocked Boolean @default(false)
+  id         String    @id @default(uuid())
+  name       String
+  email      String    @unique
+  password   String
+  role       Role      @default(USER)
+  active     Boolean   @default(true)
+  try        Int       @default(0)
+  blocked    Boolean   @default(false)
   //Default for every class
   created_at DateTime? @default(now())
   created_by String?
   updated_at DateTime? @updatedAt
   updated_by String?
-  @@map("users")  
+  Project    Project[]
+
+  @@map("users")
 }
 
-enum Role{
-    USER
-    ADMIN
+enum Role {
+  USER
+  ADMIN
 }
+
