@@ -9,8 +9,6 @@ import {UpdateUserController} from "./controllers/user/UpdateUserController";
 
 const router = Router();
 
-//ROUTES
-
 //-- ROTAS USER --
 router.post('/users', isAuthenticated, new CreateUserController().handle)
 router.post('/session', new AuthUserController().handle)
@@ -23,8 +21,4 @@ router.get('/', (req, res)=>{
     return res.json({sucess: true, menssage: "sucess"});
 })
 
-export { router };
-		
-		
-		
-		
+export { router }; 

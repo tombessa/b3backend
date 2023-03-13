@@ -11,7 +11,6 @@ const ListUserController_1 = require("./controllers/user/ListUserController");
 const UpdateUserController_1 = require("./controllers/user/UpdateUserController");
 const router = (0, express_1.Router)();
 exports.router = router;
-//ROUTES
 //-- ROTAS USER --
 router.post('/users', isAuthenticated_1.isAuthenticated, new CreateUserController_1.CreateUserController().handle);
 router.post('/session', new AuthUserController_1.AuthUserController().handle);
