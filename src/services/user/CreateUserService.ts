@@ -19,7 +19,15 @@ class CreateUserService{
     })
 
     if(userAlreadyExists){
-      throw new Error("User already exists")
+      if(userAlreadyExists.active){
+        throw new Error("User already exists")
+      }else{
+        await prismaClient.user.delete({
+          where:{
+            id: userAlreadyExists.id
+          }
+        });
+      }      
     }
 
     const passwordHash = await hash(password, 8)

@@ -1,8 +1,26 @@
 import {NextFunction, Request, Response} from 'express'
 import { verify } from 'jsonwebtoken'
+import {ListUserService} from "../services/user/ListUserService";
 
 interface Payload{
   sub: string;
+}
+
+export async function isCreatingAdmin(
+  req: Request,
+  res: Response,
+  next: NextFunction
+){
+	if(req.headers.superuser==="true"){
+		const detailUserService = new ListUserService();
+		const user = await detailUserService.execute();
+		if(user.length===0)
+			return next();
+		else return res.status(500).end();
+	}else return res.status(401).end();
+
+
+
 }
 
 export function isAuthenticated(
