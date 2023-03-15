@@ -3,7 +3,7 @@ import {CreateUserController} from "./controllers/user/CreateUserController";
 import {AuthUserController} from "./controllers/user/AuthUserController";
 import {DetailuserController} from "./controllers/user/DetailUserController";
 import {DeleteUserController} from "./controllers/user/DeleteUserController";
-import {isAuthenticated, isCreatingAdmin} from "./middlewares/isAuthenticated";
+import {isAuthenticated} from "./middlewares/isAuthenticated";
 import {ListUserController} from "./controllers/user/ListUserController";
 import {UpdateUserController} from "./controllers/user/UpdateUserController";
 import {isCreatingAdmin} from "./middlewares/isAuthenticated";
