@@ -1,4 +1,5 @@
 import prismaClient from "../../prisma"
+#import_role#
 
 interface #entity#Request{
     #interface_column#
@@ -15,7 +16,7 @@ class #function##entity#Service{
 	
 	#where#
 	#data#
-	return await prismaClient.#entity_lower#.#action#(query);
+	return await prismaClient.#entity_prisma#.#action#(query);
 
   }
 }

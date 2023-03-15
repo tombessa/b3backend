@@ -37,18 +37,136 @@ enum Role{
 
 
 model Project {
+  id          String  @id @default(uuid())
+  name        String  @unique
+  url         String?
+  accountable User?   @relation(fields: [accountable_id], references: [id])
+
+  //Default for every class
+  created_at     DateTime?       @default(now())
+  created_by     String?
+  updated_at     DateTime?       @updatedAt
+  updated_by     String?
+  accountable_id String?
+  requests       Request[]
+  functionPoints FunctionPoint[]
+
+  @@map("projects")
+}
+
+model FunctionPoint {
   id String @id @default(uuid())
-  name String
-  url String
-  category User @relation(fields: [accountable_id], references: [id])
-  
+
+  type    TypeCountEnum @default(Development)
+  project Project   @relation(fields: [project_id], references: [id])
+
+  estimate_functional_size Float?
+  count_functional_size    Float?
+
   //Default for every class
   created_at DateTime? @default(now())
   created_by String?
   updated_at DateTime? @updatedAt
   updated_by String?
-  
-  @@map("projects")  
-  
-  accountable_id String
+  project_id String    @unique
+
+  @@map("function_points")
+}
+
+enum TypeCountEnum {
+  Development
+  Improvement
+  Application
+}
+
+model RequestType {
+  id   String @id @default(uuid())
+  name String
+
+  //Default for every class
+  created_at DateTime? @default(now())
+  created_by String?
+  updated_at DateTime? @updatedAt
+  updated_by String?
+  Request    Request[]
+
+  @@map("requests_type")
+}
+
+model Request {
+  id      String      @id @default(uuid())
+  url     String
+  title   String
+  detail  String?
+  type    RequestType @relation(fields: [request_type_id], references: [id])
+  project Project     @relation(fields: [project_id], references: [id])
+
+  parentRequest Request?  @relation("RequestWay", fields: [request_id], references: [id])
+  childRequest  Request[] @relation("RequestWay")
+
+  //Default for every class
+  created_at      DateTime? @default(now())
+  created_by      String?
+  updated_at      DateTime? @updatedAt
+  updated_by      String?
+  request_type_id String
+  project_id      String
+  request_id      String?
+
+  @@map("requests")
+}
+
+model Maintenance {
+  id String @id @default(uuid())
+
+  name String
+
+  //Default for every class
+  created_at DateTime?  @default(now())
+  created_by String?
+  updated_at DateTime?  @updatedAt
+  updated_by String?
+  Function   Function[]
+
+  @@map("maintenances")
+}
+
+model Function {
+  id              String       @id @default(uuid())
+  type            FunctionType @default(CE)
+  logical_file    Int
+  elementary_data Int
+
+  complexity      Complexity? @default(NotApplicable)
+  unadjusted_size Int?
+  multiplier      String?
+  fitted_size     Int?
+
+  observation String?
+
+  maintenance Maintenance @relation(fields: [maintenance_id], references: [id])
+
+  //Default for every class
+  created_at     DateTime? @default(now())
+  created_by     String?
+  updated_at     DateTime? @updatedAt
+  updated_by     String?
+  maintenance_id String
+
+  @@map("functions")
+}
+
+enum Complexity {
+  Low
+  Medium
+  High
+  NotApplicable
+}
+
+enum FunctionType {
+  ALI
+  AIE
+  CE
+  EE
+  SE
 }
