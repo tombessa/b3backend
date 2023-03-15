@@ -6,15 +6,15 @@ import {DeleteUserController} from "./controllers/user/DeleteUserController";
 import {isAuthenticated} from "./middlewares/isAuthenticated";
 import {ListUserController} from "./controllers/user/ListUserController";
 import {UpdateUserController} from "./controllers/user/UpdateUserController";
+import {isCreatingAdmin} from "./middlewares/isAuthenticated";
 
 const router = Router();
-import {isCreatingAdmin} from "./middlewares/isAuthenticated";
 
 //ROUTES
 
 //-- ROTAS USER --
-router.post('/users/createAdmin', isCreatingAdmin, new CreateUserController().handle)
-router.post('/users', isAuthenticated, new CreateUserController().handle)
+router.post('/user/createAdmin', isCreatingAdmin, new CreateUserController().handle)
+router.post('/user', isAuthenticated, new CreateUserController().handle)
 router.post('/session', new AuthUserController().handle)
 router.patch('/user', isAuthenticated,  new UpdateUserController().handle)
 router.get('/me', isAuthenticated,  new DetailuserController().handle )

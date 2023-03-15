@@ -9,11 +9,12 @@ const DeleteUserController_1 = require("./controllers/user/DeleteUserController"
 const isAuthenticated_1 = require("./middlewares/isAuthenticated");
 const ListUserController_1 = require("./controllers/user/ListUserController");
 const UpdateUserController_1 = require("./controllers/user/UpdateUserController");
+const isAuthenticated_2 = require("./middlewares/isAuthenticated");
 const router = (0, express_1.Router)();
 exports.router = router;
 //ROUTES
 //-- ROTAS USER --
-router.post('/user/createAdmin', isAuthenticated_1.isCreatingAdmin, new CreateUserController_1.CreateUserController().handle);
+router.post('/user/createAdmin', isAuthenticated_2.isCreatingAdmin, new CreateUserController_1.CreateUserController().handle);
 router.post('/user', isAuthenticated_1.isAuthenticated, new CreateUserController_1.CreateUserController().handle);
 router.post('/session', new AuthUserController_1.AuthUserController().handle);
 router.patch('/user', isAuthenticated_1.isAuthenticated, new UpdateUserController_1.UpdateUserController().handle);
