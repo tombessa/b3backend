@@ -29,7 +29,16 @@ class CreateUserService {
                 }
             });
             if (userAlreadyExists) {
-                throw new Error("User already exists");
+                if (userAlreadyExists.active) {
+                    throw new Error("User already exists");
+                }
+                else {
+                    yield prisma_1.default.user.delete({
+                        where: {
+                            id: userAlreadyExists.id
+                        }
+                    });
+                }
             }
             const passwordHash = yield (0, bcryptjs_1.hash)(password, 8);
             const user = yield prisma_1.default.user.create({

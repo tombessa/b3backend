@@ -26,9 +26,29 @@ model User {
   updated_at DateTime? @updatedAt
   updated_by String?
   @@map("users")  
+  
+  projects Project[]
 }
 
 enum Role{
     USER
     ADMIN
+}
+
+
+model Project {
+  id String @id @default(uuid())
+  name String
+  url String
+  category User @relation(fields: [accountable_id], references: [id])
+  
+  //Default for every class
+  created_at DateTime? @default(now())
+  created_by String?
+  updated_at DateTime? @updatedAt
+  updated_by String?
+  
+  @@map("projects")  
+  
+  accountable_id String
 }
