@@ -1,4 +1,4 @@
-{ "name":"Project",
+[{ "name":"Project",
 "column":[
 	{"name":"id","primitive":"string","required":false,"unique":false,"column_type":{"name":""}},
 	{"name":"name","primitive":"string","required":true,"unique":true,"column_type":{"name":""}},
@@ -6,4 +6,15 @@
 	{"name":"accountable_id","primitive":"string","required":false,"unique":false,"column_type":{"name":""}},
 	{"name":"created_by","primitive":"string","required":false,"unique":false,"column_type":{"name":""}},
 	{"name":"updated_by","primitive":"string","required":false,"unique":false,"column_type":{"name":""}}
+]},
+{ "name":"FunctionPoint",
+"column":[
+	{"name":"id","primitive":"string","required":false,"unique":false,"column_type":{"name":""}},
+	{"name":"project_id","primitive":"string","required":true,"unique":true,"column_type":{"name":""}},
+	{"name":"type_function","primitive":"TypeCountEnum","required":true,"unique":false,"column_type":[{"name":"Development"},{"name":"Improvement"},{"name":"Application"}]},
+	{"name":"estimate_functional_size","primitive":"number","required":false,"unique":false,"column_type":{"name":""}},
+	{"name":"count_functional_size","primitive":"number","required":false,"unique":false,"column_type":{"name":""}},
+	{"name":"created_by","primitive":"string","required":false,"unique":false,"column_type":{"name":""}},
+	{"name":"updated_by","primitive":"string","required":false,"unique":false,"column_type":{"name":""}}
 ]}
+]
