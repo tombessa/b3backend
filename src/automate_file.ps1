@@ -20,7 +20,7 @@ echo ******************************************************* "*** Create new Fil
 
 $functions = "Create", "List", "Update", "Delete"
 $actions =  "create", "findMany", "update", "delete"
-$from_params =  "body", "query", "body", "body"
+$from_params =  "body", "query", "body", "query"
 $url_action =  "post", "get", "patch", "delete"
 
 $diretorio_atual=(Get-Item .).FullName
@@ -98,8 +98,13 @@ export type ${column_primitive} = typeof ${column_primitive}[keyof typeof ${colu
 		}else{
 			$controller_list += "	${column_name} :  ${column_name}, `n"			
 		}
-		$where += "	if(${column_name} !== undefined) query.where = {...query.where, ${column_name} : ${column_name}}; `n"
-		$data +=  "	if(${column_name} !== undefined) query.data = {...query.data, ${column_name} : ${column_name}}; `n"
+		if($column_primitive -eq "number"){
+			$where += "	if(${column_name} !== undefined) query.where = {...query.where, ${column_name} : Number(${column_name})}; `n"
+			$data +=  "	if(${column_name} !== undefined) query.data = {...query.data, ${column_name} : Number(${column_name})}; `n"
+		}else{
+			$where += "	if(${column_name} !== undefined) query.where = {...query.where, ${column_name} : ${column_name}}; `n"
+			$data +=  "	if(${column_name} !== undefined) query.data = {...query.data, ${column_name} : ${column_name}}; `n"
+		}
 	}
 	$entity_lower = $entity_name.ToLower()
 	if(!($unique_list_column -eq "")){

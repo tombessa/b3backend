@@ -57,7 +57,7 @@ model Project {
 model FunctionPoint {
   id String @id @default(uuid())
 
-  type    TypeCountEnum @default(Development)
+  type_function    TypeCountEnum @default(Development)
   project Project   @relation(fields: [project_id], references: [id])
 
   estimate_functional_size Float?
