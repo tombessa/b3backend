@@ -17,6 +17,7 @@ exports.router = router;
 router.post('/user/createAdmin', isAuthenticated_2.isCreatingAdmin, new CreateUserController_1.CreateUserController().handle);
 router.post('/user', isAuthenticated_1.isAuthenticated, new CreateUserController_1.CreateUserController().handle);
 router.post('/session', new AuthUserController_1.AuthUserController().handle);
+router.post('/sessionSocialmedia', isAuthenticated_1.isSocialMediaLogin, new AuthUserController_1.AuthUserController().handleSocialMedia);
 router.patch('/user', isAuthenticated_1.isAuthenticated, new UpdateUserController_1.UpdateUserController().handle);
 router.get('/me', isAuthenticated_1.isAuthenticated, new DetailUserController_1.DetailuserController().handle);
 router.get('/user', isAuthenticated_1.isAuthenticated, new ListUserController_1.ListUserController().handle);

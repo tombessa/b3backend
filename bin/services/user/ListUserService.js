@@ -17,12 +17,23 @@ const prisma_1 = __importDefault(require("../../prisma"));
 class ListUserService {
     execute() {
         return __awaiter(this, void 0, void 0, function* () {
-            const user = yield prisma_1.default.user.findMany({
+            return yield prisma_1.default.user.findMany({
                 where: {
                     active: true
                 }
             });
-            return user;
+        });
+    }
+    executeSocialMedia(email) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (!email)
+                throw new Error("E-mail is required");
+            return yield prisma_1.default.user.findFirst({
+                where: {
+                    email: email,
+                    active: true
+                }
+            });
         });
     }
 }

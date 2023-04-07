@@ -60,6 +60,45 @@ class AuthUserService {
             };
         });
     }
+    executeSocialMedia({ email }) {
+        return __awaiter(this, void 0, void 0, function* () {
+            //Verificar se o email existe.
+            const user = yield prisma_1.default.user.findFirst({
+                where: {
+                    email: email,
+                    active: true
+                }
+            });
+            if (!user) {
+                throw new Error("User not exists");
+            }
+            if (user.blocked) {
+                yield prisma_1.default.user.update({
+                    where: {
+                        id: user.id
+                    },
+                    data: {
+                        try: 0,
+                        blocked: false
+                    }
+                });
+            }
+            //Generate Token
+            const token = (0, jsonwebtoken_1.sign)({
+                name: user.name,
+                email: user.email
+            }, process.env.JWT_SECRET, {
+                subject: user.id,
+                expiresIn: process.env.TOKEN_EXPIRES ? process.env.TOKEN_EXPIRES : '60m'
+            });
+            return {
+                id: user.id,
+                name: user.name,
+                email: user.email,
+                token: token
+            };
+        });
+    }
     execute({ email, password }) {
         return __awaiter(this, void 0, void 0, function* () {
             //Verificar se o email existe.

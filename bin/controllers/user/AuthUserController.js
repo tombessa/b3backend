@@ -12,6 +12,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthUserController = void 0;
 const AuthUserService_1 = require("../../services/user/AuthUserService");
 class AuthUserController {
+    handleSocialMedia(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { email } = req.body;
+            const auth = yield new AuthUserService_1.AuthUserService().executeSocialMedia({
+                email
+            });
+            return res.json(auth);
+        });
+    }
     resetHandle(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { email, password } = req.body;

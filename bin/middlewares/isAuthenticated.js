@@ -9,9 +9,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isAuthenticated = exports.isCreatingAdmin = void 0;
+exports.isAuthenticated = exports.isCreatingAdmin = exports.isSocialMediaLogin = void 0;
 const jsonwebtoken_1 = require("jsonwebtoken");
 const ListUserService_1 = require("../services/user/ListUserService");
+function isSocialMediaLogin(req, res, next) {
+    return __awaiter(this, void 0, void 0, function* () {
+        if (req.body.key === process.env.SECRET)
+            return next();
+        else
+            return res.status(401).end();
+    });
+}
+exports.isSocialMediaLogin = isSocialMediaLogin;
 function isCreatingAdmin(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         if (req.headers.superuser === "true") {
