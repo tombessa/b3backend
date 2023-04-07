@@ -6,6 +6,13 @@ interface Payload{
   sub: string;
 }
 
+export async function isSocialMediaLogin(req: Request,
+                                         res: Response,
+                                         next: NextFunction){
+    if(req.body.key===process.env.SECRET) return next();
+    else return res.status(401).end();
+}
+
 export async function isCreatingAdmin(
   req: Request,
   res: Response,

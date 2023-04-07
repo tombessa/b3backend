@@ -3,13 +3,21 @@ import prismaClient from "../../prisma";
 class ListUserService{
   async execute(){
 
-    const user = await prismaClient.user.findMany({
-      where:{
+    return await prismaClient.user.findMany({
+      where: {
         active: true
       }
     });
+  }
 
-    return user;
+  async executeSocialMedia(email: string){
+    if(!email) throw new Error("E-mail is required")
+    return await prismaClient.user.findFirst({
+      where: {
+        email: email,
+        active: true
+      }
+    });
   }
 }
 
