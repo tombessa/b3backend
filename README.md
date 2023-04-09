@@ -1,4 +1,4 @@
-# manager-project-backend
+# mirror-backend
 ## Getting Started
 
 Configure .env variables:
