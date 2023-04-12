@@ -35,9 +35,9 @@ $enum_list=""
 $router="`n"
 $import_router=""
 foreach ($item_entity in $entity) {
+	$unique_code=""
 	$required_code=""
-	$interface_column=""
-	$required_code=""
+	$interface_column=""	
 	$column_init=""
 	$unique_list_column=""
 	$columns_list=""
@@ -148,7 +148,8 @@ export type ${column_primitive} = typeof ${column_primitive}[keyof typeof ${colu
 		echo "=>controller_request: $controller_request"
 		echo "=>function_lower: $function_lower"
 		echo "=>controller_list: $controller_list"
-		echo "=>interface_request: $interface_request"
+		echo "=>interface_request: $interface_request"		
+		
 		
 		#copiando o arquivo controller
 		$path="$diretorio_atual\controllers\$entity_lower"
@@ -210,8 +211,9 @@ export type ${column_primitive} = typeof ${column_primitive}[keyof typeof ${colu
 		foreach ($file in $addedFiles){(Get-Content $file.PSPath) | Foreach-Object { $_ -replace "#interface_column#",$interface_column }| Set-Content $file.PSPath}
 		foreach ($file in $addedFiles){(Get-Content $file.PSPath) | Foreach-Object { $_ -replace "#controller_param#",$controller_param }| Set-Content $file.PSPath}
 		switch ( $function )
-		{
+		{			
 			"Create" {
+				echo "=>unique_list_column: $unique_list_column"
 				echo "=>init_query: $init_query"
 				echo "=>required_code: $required_code"
 				echo "=>unique_code: $unique_code"
@@ -224,6 +226,7 @@ export type ${column_primitive} = typeof ${column_primitive}[keyof typeof ${colu
 				foreach ($file in $addedFiles){(Get-Content $file.PSPath) | Foreach-Object { $_ -replace "#where#","" }| Set-Content $file.PSPath}
 				}
 			"Update" {
+				echo "=>unique_list_column: $unique_list_column"
 				echo "=>init_query: $init_query"
 				echo "=>required_code: $required_code"
 				echo "=>unique_code: $unique_code"
@@ -236,6 +239,7 @@ export type ${column_primitive} = typeof ${column_primitive}[keyof typeof ${colu
 				foreach ($file in $addedFiles){(Get-Content $file.PSPath) | Foreach-Object { $_ -replace "#unique_code#",$unique_code }| Set-Content $file.PSPath}
 			}
 			"List" {
+				echo "=>unique_list_column: $unique_list_column"
 				echo "=>init_query: $init_query"
 				echo "=>required_code: $required_code"
 				echo "=>unique_code: $unique_code"
@@ -248,6 +252,7 @@ export type ${column_primitive} = typeof ${column_primitive}[keyof typeof ${colu
 				foreach ($file in $addedFiles){(Get-Content $file.PSPath) | Foreach-Object { $_ -replace "#data#","" }| Set-Content $file.PSPath}
 			}
 			"Delete" {
+				echo "=>unique_list_column: $unique_list_column"
 				echo "=>init_query: $init_query"
 				echo "=>required_code: $required_code"
 				echo "=>unique_code: $unique_code"

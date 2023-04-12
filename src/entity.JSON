@@ -16,5 +16,46 @@
 	{"name":"count_functional_size","primitive":"number","required":false,"unique":false,"column_type":{"name":""}},
 	{"name":"created_by","primitive":"string","required":false,"unique":false,"column_type":{"name":""}},
 	{"name":"updated_by","primitive":"string","required":false,"unique":false,"column_type":{"name":""}}
-]}
+]},
+	{ "name":"RequestType",
+		"column":[
+			{"name":"id","primitive":"string","required":false,"unique":false,"column_type":{"name":""}},
+			{"name":"name","primitive":"string","required":true,"unique":false,"column_type":{"name":""}},
+			{"name":"created_by","primitive":"string","required":false,"unique":false,"column_type":{"name":""}},
+			{"name":"updated_by","primitive":"string","required":false,"unique":false,"column_type":{"name":""}}
+		]},
+	{ "name":"Request",
+		"column":[
+			{"name":"id","primitive":"string","required":false,"unique":false,"column_type":{"name":""}},
+			{"name":"url","primitive":"string","required":true,"unique":false,"column_type":{"name":""}},
+			{"name":"title","primitive":"string","required":true,"unique":false,"column_type":{"name":""}},
+			{"name":"project_id","primitive":"string","required":true,"unique":false,"column_type":{"name":""}},
+			{"name":"request_id","primitive":"string","required":false,"unique":false,"column_type":{"name":""}},
+			{"name":"request_type_id","primitive":"string","required":true,"unique":false,"column_type":{"name":""}},
+			{"name":"detail","primitive":"string","required":false,"unique":false,"column_type":{"name":""}},
+			{"name":"created_by","primitive":"string","required":false,"unique":false,"column_type":{"name":""}},
+			{"name":"updated_by","primitive":"string","required":false,"unique":false,"column_type":{"name":""}}
+		]},
+	{ "name":"Maintenance",
+		"column":[
+			{"name":"id","primitive":"string","required":false,"unique":false,"column_type":{"name":""}},
+			{"name":"name","primitive":"string","required":true,"unique":false,"column_type":{"name":""}},
+			{"name":"created_by","primitive":"string","required":false,"unique":false,"column_type":{"name":""}},
+			{"name":"updated_by","primitive":"string","required":false,"unique":false,"column_type":{"name":""}}
+		]},
+	{ "name":"FunctionRequest",
+		"column":[
+			{"name":"id","primitive":"string","required":false,"unique":false,"column_type":{"name":""}},
+			{"name":"type_function","primitive":"FunctionTypeEnum","required":true,"unique":false,"column_type":[{"name":"ALI"},{"name":"AIE"},{"name":"CE"},{"name":"EE"},{"name":"SE"}]},
+			{"name":"logical_file","primitive":"number","required":true,"unique":false,"column_type":{"name":""}},
+			{"name":"elementary_data","primitive":"number","required":true,"unique":false,"column_type":{"name":""}},
+			{"name":"complexity","primitive":"ComplexityEnum","required":false,"unique":false,"column_type":[{"name":"Low"},{"name":"Medium"},{"name":"High"},{"name":"NotApplicable"}]},
+			{"name":"unadjusted_size","primitive":"number","required":false,"unique":false,"column_type":{"name":""}},
+			{"name":"multiplier","primitive":"number","required":false,"unique":false,"column_type":{"name":""}},
+			{"name":"fitted_size","primitive":"number","required":false,"unique":false,"column_type":{"name":""}},
+			{"name":"observation","primitive":"string","required":false,"unique":false,"column_type":{"name":""}},
+			{"name":"maintenance_id","primitive":"string","required":false,"unique":false,"column_type":{"name":""}},
+			{"name":"created_by","primitive":"string","required":false,"unique":false,"column_type":{"name":""}},
+			{"name":"updated_by","primitive":"string","required":false,"unique":false,"column_type":{"name":""}}
+		]}
 ]

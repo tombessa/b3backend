@@ -1,6 +1,6 @@
 {
   "name": "manager-project-backend",
-  "version": "1.2.0",
+  "version": "1.5.0",
   "description": "Project Manager API",
   "main": "src/server.ts",
   "repository": "https://github.com/tombessa/manager-project-backend.git",
@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "start": "node ./bin/server.js",
+    "start": "tsc && node ./bin/server.js",
     "dev": "ts-node ./src/server.ts"
   },
   "dependencies": {

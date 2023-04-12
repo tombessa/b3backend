@@ -7,6 +7,7 @@ import {isAuthenticated, isSocialMediaLogin} from "./middlewares/isAuthenticated
 import {ListUserController} from "./controllers/user/ListUserController";
 import {UpdateUserController} from "./controllers/user/UpdateUserController";
 import {isCreatingAdmin} from "./middlewares/isAuthenticated";
+
 const router = Router();
 
 //ROUTES
@@ -20,9 +21,6 @@ router.patch('/user', isAuthenticated,  new UpdateUserController().handle)
 router.get('/me', isAuthenticated,  new DetailuserController().handle )
 router.get('/user', isAuthenticated,  new ListUserController().handle )
 router.patch('/user/remove', isAuthenticated,  new DeleteUserController().handle )
-
-
-
 
 router.get('/', (req, res)=>{
     return res.json({sucess: true, menssage: "sucess"});
